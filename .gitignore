@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Firebase Admin SDK credentials
+techshop-7e20-firebase-adminsdk-spis7-b3f2f34a29.json
