@@ -10,21 +10,22 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "Producto")
+@Table(name = "producto")
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_Producto")
+    @Column(name = "id_producto")
     private Long idProducto;
     private String descripcion;
     private String rutaImagen;
     private boolean activo;
     private String detalle;
     private double precio;
-    //private Long idCategoria;
+    private int existencias;
+    //private Long idCategoria; reemplazar con ManyToOne
 
     @ManyToOne
     @JoinColumn(name = "id_categoria")
@@ -33,8 +34,8 @@ public class Producto implements Serializable {
     public Producto() {
     }
 
-    public Producto(String Producto, boolean activo) {
-        this.descripcion = Producto;
+    public Producto(String producto, boolean activo) {
+        this.descripcion = producto;
         this.activo = activo;
     }
 }
