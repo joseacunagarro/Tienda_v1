@@ -39,7 +39,7 @@ public class PruebasController {
         model.addAttribute("categorias", categorias);
         return "/pruebas/listado";
     }
-    
+
     //Los métodos siguientes son para la prueba de consultas ampliadas
     @GetMapping("/listado2")
     public String listado2(Model model) {
@@ -57,26 +57,42 @@ public class PruebasController {
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
     }
-    
+
     @PostMapping("/query2")
     public String consultaQuery2(@RequestParam(value = "precioInf") double precioInf,
             @RequestParam(value = "precioSup") double precioSup, Model model) {
         var productos = productoService.metodoJPQL(precioInf, precioSup);
-        model.addAttribute("productos", productos);        
+        model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
         return "/pruebas/listado2";
     }
-    
-     @PostMapping("/query3")
+
+    @PostMapping("/query3")
     public String consultaQuery3(@RequestParam(value = "precioInf") double precioInf,
             @RequestParam(value = "precioSup") double precioSup, Model model) {
         var productos = productoService.metodoNativo(precioInf, precioSup);
-        model.addAttribute("productos", productos);        
+        model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
         model.addAttribute("precioInf", precioInf);
         model.addAttribute("precioSup", precioSup);
+        return "/pruebas/listado2";
+    }
+
+    @PostMapping("/queryInventario")
+    public String consultaQueryInventario(@RequestParam(value = "minExistencias") int minExistencias, Model model) {
+        var productos = productoService.findByInventarioMayor(minExistencias);
+        model.addAttribute("productos", productos);
+        model.addAttribute("minExistencias", minExistencias);
+
+        // Si no hay resultados, se agrega una bandera al modelo
+        if (productos.isEmpty()) {
+            model.addAttribute("noResults", true);
+        } else {
+            model.addAttribute("noResults", false);
+        }
+
         return "/pruebas/listado2";
     }
 }

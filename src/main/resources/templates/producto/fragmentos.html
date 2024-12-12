@@ -115,8 +115,8 @@
                                         <tr th:each="producto, contador : ${productos}">
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${producto.descripcion}]]</td>
-                                            <th>[[#{producto.detalle}]]</th>
-                                            <th>[[#{producto.categoria.descripcion}]]</th>
+                                            <th>[[${producto.detalle}]]</th>
+                                            <th>[[${producto.categoria.descripcion}]]</th>
                                             <td>[[${producto.precio}]]</td>
                                             <td>[[${producto.existencias}]]</td>
                                             <td>[[${producto.precio*producto.existencias}]]</td>

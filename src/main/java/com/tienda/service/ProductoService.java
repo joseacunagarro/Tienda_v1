@@ -21,7 +21,8 @@ public interface ProductoService {
     public void delete(Producto producto);
     
     public List<Producto> findByPrecioBetweenOrderByDescripcion(double precioInf, double precioSup);
-
+    
+    public List<Producto> findByInventarioMayor(int minExistencias);
     
      //Ejemplo de método utilizando Consultas con JPQL
     @Query(value = "SELECT a FROM Producto a where a.precio BETWEEN :precioInf AND :precioSup ORDER BY a.descripcion ASC")
