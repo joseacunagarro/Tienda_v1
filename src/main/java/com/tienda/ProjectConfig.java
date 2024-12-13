@@ -1,7 +1,6 @@
 package com.tienda;
 
 import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -52,7 +51,7 @@ public class ProjectConfig implements WebMvcConfigurer {
     //Bean para poder acceder a los Messages.properties en código...
     @Bean("messageSource")
     public MessageSource messageSource() {
-        ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+        ResourceBundleMessageSource messageSource= new ResourceBundleMessageSource();
         messageSource.setBasenames("messages");
         messageSource.setDefaultEncoding("UTF-8");
         return messageSource;
@@ -71,17 +70,17 @@ public class ProjectConfig implements WebMvcConfigurer {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/", "/index", "/errores/**",
-                                "/carrito/**", "/pruebas/**", "/reportes/**",
-                                "/registro/**", "/js/**", "/webjars/**")
+                        .requestMatchers("/","/index","/errores/**",
+                                "/carrito/**","/pruebas/**","/reportes/**",
+                                "/registro/**","/js/**","/webjars/**")
                         .permitAll()
                         .requestMatchers(
-                                "/producto/nuevo", "/producto/guardar",
-                                "/producto/modificar/**", "/producto/eliminar/**",
-                                "/categoria/nuevo", "/categoria/guardar",
-                                "/categoria/modificar/**", "/categoria/eliminar/**",
-                                "/usuario/nuevo", "/usuario/guardar",
-                                "/usuario/modificar/**", "/usuario/eliminar/**",
+                                "/producto/nuevo","/producto/guardar",
+                                "/producto/modificar/**","/producto/eliminar/**",
+                                "/categoria/nuevo","/categoria/guardar",
+                                "/categoria/modificar/**","/categoria/eliminar/**",
+                                "/usuario/nuevo","/usuario/guardar",
+                                "/usuario/modificar/**","/usuario/eliminar/**",
                                 "/reportes/**"
                         ).hasRole("ADMIN")
                         .requestMatchers(
@@ -98,8 +97,8 @@ public class ProjectConfig implements WebMvcConfigurer {
         return http.build();
     }
 
-    /* El siguiente método se utiliza para completar la clase no es
-        realmente funcional, la próxima semana se reemplaza con usuarios de BD
+/* El siguiente método se utiliza para completar la clase no es
+    realmente funcional, la próxima semana se reemplaza con usuarios de BD
     @Bean
     public UserDetailsService users() {
         UserDetails admin = User.builder()
@@ -118,9 +117,10 @@ public class ProjectConfig implements WebMvcConfigurer {
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user, sales, admin);
-    }*/
+    }  */
+
     @Autowired
-    private UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService; //aqui se obtiene la info del usuario como por ejemplo el nombre, la contraseña y los roles
 
     @Autowired
     public void configurerGlobal(AuthenticationManagerBuilder build) throws Exception {
